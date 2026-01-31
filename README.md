@@ -50,7 +50,8 @@ A web application for managing students, groups, and their details. Built with *
 
 ### Add Student Page / Modal
 
-![Add Student Page](./screenshots/add_student.png)
+![Add Student Page](./screenshots/add_student1.png)
+![Add Student Page](./screenshots/add_student2.png)
 *Description: Form to add new students with details and date picker.*
 
 
