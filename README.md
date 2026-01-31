@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# University portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application for managing students, groups, and their details. Built with **React**, **TypeScript**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## React Compiler
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Screenshots](#screenshots)
+* [Usage](#usage)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* User authentication: **Login** and **Register** pages
+* Student management: view, add, and search students
+* Group management: view groups associated with students
+* Interactive dashboard with statistics
+* Modern UI with **Tailwind CSS**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* **Frontend:** React, Vite, TypeScript, Tailwind CSS, Lucide Icons, Shadcn UI
+* **State Management:** React hooks (custom hooks for API calls)
+* **Backend:** Golang, echo framework
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Screenshots
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Login Page
+
+![Login Page](./screenshots/login.png)
+*Description: Enter your username and password to log in.*
+
+### Register Page
+
+![Register Page](./screenshots/register.png)
+*Description: Create a new account to access the dashboard.*
+
+### Students Dashboard
+
+![Students Dashboard](./screenshots/students_dashboard.png)
+*Description: Overview of all students, groups, and quick statistics.*
+
+### Add Student Page / Modal
+
+![Add Student Page](./screenshots/add_student.png)
+*Description: Form to add new students with details and date picker.*
+
+
+## Usage
+
+1. Register a new user or log in with an existing account.
+2. Navigate to the **Students** page to view all students.
+3. Use the **Add Student** button to open a modal form for adding a new student.
+
+---
