@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { GraduationCap } from "lucide-react";
 
 export function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -45,8 +44,8 @@ export function RegisterPage() {
     setIsLoading(true);
 
     try {
-      await register(email, password);
-      navigate("/dashboard/students");
+      await register(email, password, 1); // default role 1 = student
+      navigate("/login");
     } catch {
       setError("Registration failed. Please try again.");
     } finally {
@@ -55,28 +54,25 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center bg-slate-900 p-4">
+      <Card className="w-full max-w-md bg-slate-800 text-slate-100 shadow-lg">
         <CardHeader className="space-y-1 text-center">
-          <div className="mb-4 flex justify-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary">
-              <GraduationCap className="h-8 w-8 text-primary-foreground" />
-            </div>
-          </div>
           <CardTitle className="text-2xl font-bold">Create Account</CardTitle>
-          <CardDescription>
+          <CardDescription className="text-slate-300">
             Enter your details to create a new account
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             {error && (
-              <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
+              <div className="rounded-md bg-red-700/20 p-3 text-sm text-red-400">
                 {error}
               </div>
             )}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-slate-200">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -84,10 +80,13 @@ export function RegisterPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="bg-slate-700 text-slate-100 placeholder-slate-400"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-slate-200">
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
@@ -95,10 +94,13 @@ export function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="bg-slate-700 text-slate-100 placeholder-slate-400"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Label htmlFor="confirmPassword" className="text-slate-200">
+                Confirm Password
+              </Label>
               <Input
                 id="confirmPassword"
                 type="password"
@@ -106,18 +108,23 @@ export function RegisterPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                className="bg-slate-700 text-slate-100 placeholder-slate-400"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full bg-primary bg-slate-900 text-white hover:bg-primary/50"
+              disabled={isLoading}
+            >
               {isLoading ? "Creating account..." : "Create account"}
             </Button>
-            <p className="text-center text-sm text-muted-foreground">
+            <p className="text-center text-sm text-slate-300">
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="font-medium text-primary hover:underline"
+                className="font-medium text-primary hover:underline text-slate-300"
               >
                 Sign in
               </Link>

@@ -6,10 +6,20 @@ import {
   type ReactNode,
 } from "react";
 import { authApi } from "@/api";
+import { jwtDecode } from "jwt-decode";
+
+interface JwtPayload {
+  user_id: number;
+  email: string;
+  role_id: number;
+  exp: number;
+}
+
 
 interface User {
   id: number;
   email: string;
+  role_id : number;
 }
 
 interface AuthContextType {
@@ -17,7 +27,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string, role_id:number) => Promise<void>;
   logout: () => void;
 }
 
@@ -37,17 +47,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string) => {
     const response = await authApi.login({ email, password });
-    const userData: User = {
-      id: response.user.id,
-      email: response.user.email,
-    };
+    
+    const token = response.token;
+    const decoded = jwtDecode<JwtPayload>(token)
+
+    const userData: User ={
+      id: decoded.user_id,
+      email: decoded.email,
+      role_id: decoded.role_id,
+    }
+
+
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", response.access_token);
+    localStorage.setItem("token", response.token);
   };
 
-  const register = async (email: string, password: string) => {
-    const response = await authApi.register({ email, password });
+  const register = async (email: string, password: string,role_id:number) => {
+    await authApi.register({ email, password, role_id});
+    /*
     const userData: User = {
       id: response.user.id,
       email: response.user.email,
@@ -55,6 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
     localStorage.setItem("token", response.access_token);
+    */
   };
 
   const logout = () => {

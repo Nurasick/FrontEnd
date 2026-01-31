@@ -7,6 +7,7 @@ export interface LoginDto {
 export interface RegisterDto {
   email: string;
   password: string;
+  role_id:number;
 }
 
 export interface UserResponse {
@@ -15,7 +16,7 @@ export interface UserResponse {
 }
 
 export interface AuthResponse {
-  access_token: string;
+  token: string;
   user: UserResponse;
 }
 
@@ -25,8 +26,7 @@ export interface Student {
   firstname: string;
   surname: string;
   group_name: string;
-  major: string;
-  course_year: number;
+  year: number;
   gender: string;
   birth_date: string;
 }
@@ -34,10 +34,9 @@ export interface Student {
 export interface CreateStudentDto {
   firstname: string;
   surname: string;
-  group_name: string;
-  major: string;
-  course_year: number;
-  gender: string;
+  group_id: number;
+  year: number;
+  gender_id: number;
   birth_date: string;
 }
 
@@ -45,8 +44,7 @@ export interface UpdateStudentDto {
   firstname?: string;
   surname?: string;
   group_name?: string;
-  major?: string;
-  course_year?: number;
+  year?: number;
   gender?: string;
   birth_date?: string;
 }

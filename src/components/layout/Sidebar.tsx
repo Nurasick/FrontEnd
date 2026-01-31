@@ -17,6 +17,7 @@ const navItems = [
     href: "/dashboard/students",
     icon: Users,
   },
+  /*
   {
     title: "Group Schedules",
     href: "/dashboard/schedules",
@@ -27,6 +28,7 @@ const navItems = [
     href: "/dashboard/attendance",
     icon: ClipboardCheck,
   },
+  */
 ];
 
 export function Sidebar() {
@@ -44,12 +46,13 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="flex h-screen w-64 flex-col border-r bg-sidebar">
-      <div className="flex h-16 items-center gap-2 border-b px-6">
-        <GraduationCap className="h-8 w-8 text-primary" />
-        <span className="text-xl font-bold">UniverPortal</span>
+    <aside className="flex h-screen w-64 flex-col bg-slate-900 border-r border-slate-800 text-slate-100">
+      {/* Logo */}
+      <div className="flex h-16 items-center gap-2 border-b border-slate-800 px-6">
+        <span className="text-xl font-bold text-slate-100">UniverPortal</span>
       </div>
 
+      {/* Navigation */}
       <nav className="flex-1 space-y-1 p-4">
         {navItems.map((item) => (
           <NavLink
@@ -59,8 +62,8 @@ export function Sidebar() {
               cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 isActive
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  ? "bg-primary text-white bg-slate-800"
+                  : "text-slate-200 hover:bg-slate-700 hover:text-white"
               )
             }
           >
@@ -70,26 +73,25 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="border-t p-4">
-        <div className="flex items-center gap-3 rounded-lg px-3 py-2">
+      {/* User Info / Logout */}
+      <div className="border-t border-slate-800 p-4">
+        <div className="flex items-center gap-3 rounded-lg px-3 py-2 bg-slate-800">
           <Avatar className="h-9 w-9">
-            <AvatarFallback className="bg-primary text-primary-foreground text-xs">
+            <AvatarFallback className="bg-primary text-white text-xs">
               {user?.email ? getInitials(user.email) : "U"}
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 overflow-hidden">
-            <p className="truncate text-sm font-medium">
+            <p className="truncate text-sm font-medium text-slate-100">
               {user?.email?.split("@")[0]}
             </p>
-            <p className="truncate text-xs text-muted-foreground">
-              {user?.email}
-            </p>
+            <p className="truncate text-xs text-slate-300">{user?.email}</p>
           </div>
           <Button
             variant="ghost"
             size="icon"
             onClick={handleLogout}
-            className="shrink-0"
+            className="shrink-0 text-slate-200 hover:text-white hover:bg-slate-600"
           >
             <LogOut className="h-4 w-4" />
           </Button>

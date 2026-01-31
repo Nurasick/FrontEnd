@@ -6,7 +6,6 @@ import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { StudentsPage } from "./pages/dashboard/students/page";
 import { SchedulesPage } from "./pages/dashboard/schedules/page";
 import { AttendancePage } from "./pages/dashboard/attendance/page";
-import { AddStudentPage } from "./pages/dashboard/students/add/page";
 
 const router = createBrowserRouter([
   {
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: "students",
         element: <StudentsPage />,
-      },
-      {
-        path: "students/add",
-        element: <AddStudentPage />,
       },
       {
         path: "schedules",
